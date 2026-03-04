@@ -65,7 +65,6 @@ exec --no-startup-id /usr/lib/xdg-desktop-portal-wlr &
 exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 
 
-
 ### Sov
 
 exec rm -f /tmp/sovpipe && mkfifo /tmp/sovpipe && tail -f /tmp/sovpipe | sov -t 500
@@ -114,6 +113,9 @@ set $orange #ffbb8a
 #
 #
 output eDP-1 resolution 1920x1080 position 1920,0
+
+### Wallpaper set
+output * bg ~/Pictures/krishna.png fit
 
 ### Idle configuration
 #
