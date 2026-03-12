@@ -4,7 +4,7 @@
     "height": 30,
     "spacing": 1,
     "margin": 0,
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/weather", "custom/quote"],
+    "modules-left": ["sway/workspaces", "sway/mode", "custom/quote"],
         "modules-center": [],                                                                           //battery   //disk     // uptime      //updates        // systray
     "modules-right": ["clock","pulseaudio", "backlight", "network", "cpu", "memory", "temperature", "battery", "disk", "custom/uptime", "custom/updates", "tray"],
 
@@ -186,7 +186,7 @@
         "interval": 30,
         "format": "󰋊 {percentage_used}%",
         "path": "/",
-        "on-click": "kitty -e gdu /"
+        "on-click": "kitty -e ncdu /"
     },
 
     "tray": {

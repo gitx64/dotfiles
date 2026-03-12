@@ -109,6 +109,24 @@ local plugins = {
     ---@type render.md.UserConfig
     opts = {},
   },
+{
+  "christoomey/vim-tmux-navigator",
+  cmd = {
+    "TmuxNavigateLeft",
+    "TmuxNavigateDown",
+    "TmuxNavigateUp",
+    "TmuxNavigateRight",
+    "TmuxNavigatePrevious",
+    "TmuxNavigatorProcessList",
+  },
+  keys = {
+    { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+    { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+    { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+    { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+    { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+  },
+}
 }
 
 local opts = {}
@@ -122,12 +140,35 @@ require'nvim-treesitter'.setup {
 require'nvim-treesitter'.install { 'lua', 'bash' }
 require('render-markdown').enable()
 require('render-markdown').setup({
+  checkbox = {
+        enabled = true,
+        render_modes = false,
+        bullet = false,
+        left_pad = 0,
+        right_pad = 1,
+        unchecked = {
+            icon = '󰄱 ',
+            highlight = 'RenderMarkdownUnchecked',
+            scope_highlight = nil,
+        },
+        checked = {
+            icon = '󰱒 ',
+            highlight = 'RenderMarkdownChecked',
+            scope_highlight = nil,
+        },
+        custom = {
+            todo = { raw = '[-]', rendered = '󰥔 ', highlight = 'RenderMarkdownTodo', scope_highlight = nil },
+        },
+        scope_priority = nil,
+    },
+
     pipe_table = { preset = 'heavy' },
     code = {
       width = 'block',
         left_pad = 2,
         right_pad = 4,
     },
+
 callout = {
         note      = { raw = '[!NOTE]',      rendered = '󰋽 Note',      highlight = 'RenderMarkdownInfo',    category = 'github'   },
         tip       = { raw = '[!TIP]',       rendered = '󰌶 Tip',       highlight = 'RenderMarkdownSuccess', category = 'github'   },
@@ -200,5 +241,6 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 -- keymaps 
-vim.keymap.set('n', '<leader>ff', "<cmd>FzfLua files cwd=~/<CR>", { desc = "Fzf Live Grep" })
+vim.keymap.set('n', '<leader>ff', "<cmd>FzfLua files cwd=~/<CR>", { desc = "Fzf Global Search" })
+vim.keymap.set('n', '<leader>fc', "<cmd>FzfLua files<CR>", { desc = "Fzf current dir search" })
 

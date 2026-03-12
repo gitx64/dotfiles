@@ -115,7 +115,7 @@ set $orange #ffbb8a
 output eDP-1 resolution 1920x1080 position 1920,0
 
 ### Wallpaper set
-output * bg ~/Pictures/krishna.png fit
+output * bg ~/Pictures/arch.png fill
 
 ### Idle configuration
 #
@@ -245,7 +245,7 @@ for_window [app_id="org.pulseaudio.pavucontrol"] floating enable, move position 
 
 
     # Wallpaper
-    bindsym $mod+c exec ~/.config/sway/scripts/wallpaper.sh
+    #bindsym $mod+c exec ~/.config/sway/scripts/wallpaper.sh
 
     # Logout
     bindsym ctrl+alt+delete exec nwg-bar

@@ -1,0 +1,12 @@
+paru
+tmux
+sway
+waybar
+ncdu
+s-tui
+kitty
+floorp
+nwg-bar
+fortune
+flameshot
+
