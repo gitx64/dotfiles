@@ -21,16 +21,16 @@ set $term kitty
 set $menu rofi -show drun
 
 # File Manager
-set $file-manager nemo
+set $file-manager thunar
 
 
 
 # For settings firefox as your browser, you could replace the browser line with this:
-# set $web-browser firefox
+set $web-browser firefox
 # And same goes for any browser, just replace the command with whatever command is used to launch your browser.
 # Brave browser users need to set command as brave-bin
 # Your preferred Browser
-set $web-browser floorp
+#set $web-browser floorp
 
 # lock screen
 set $lock 'swaylock \
@@ -52,7 +52,7 @@ set $lock 'swaylock \
     --text-wrong-color d3c6aa \
     --indicator-radius 100 \
     --indicator-thickness 10 \
-    --font "Iosevka Nerd Font Mono"'
+    --font "Liga SFMono Nerd Font"'
 
 ### OBS Fixes and XDG Desktop
 
@@ -139,7 +139,7 @@ exec swayidle -w \
         --text-wrong-color d3c6aa \
         --indicator-radius 100 \
         --indicator-thickness 10 \
-        --font "Iosevka Nerd Font Mono"' \
+        --font "Liga SFMono Nerd Font"' \
     timeout 600 'swaymsg output "*" power off' \
     resume 'swaymsg output "*" power on' \
     before-sleep 'swaylock -f -c 000000'
@@ -151,7 +151,7 @@ exec swayidle -w \
 
 ### Font Configuration
 
-font pango:SFMono Nerd Font Mono 16
+font pango:Liga SFMono Nerd Font 16
 
 ### Autostart
 
@@ -186,14 +186,15 @@ exec bash -c 'swww img "$(find ~/wallpapers-extra/flowers -type f \( -iname "*.p
 exec mako
 
 ## NWG Wrapper keybinds
-exec nwg-wrapper -t sway.pango -p right -mr 10
-exec nwg-wrapper -s quick.sh -a end -p left -ml 10 -mb 10 -r 60
-exec nwg-wrapper -s quote.sh -p left -a end -mb 10 -ml 260
+#exec nwg-wrapper -t sway.pango -p right -mr 10
+#exec nwg-wrapper -s quick.sh -a end -p left -ml 10 -mb 10 -r 60
+#exec nwg-wrapper -s quote.sh -p left -a end -mb 10 -ml 260
 
 ## Autostart Applications
 
-exec swaymsg "workspace 1; exec floorp"
-exec swaymsg "workspace 3; exec kitty"
+exec swaymsg "workspace 1; exec kitty"
+exec swaymsg "workspace 2; exec firefox"
+exec swaymsg "workspace 3; exec steam"
 
 
 ### Window Rules

@@ -65,7 +65,7 @@ local plugins = {
           { section = "startup" },
           {
             section = "terminal",
-            cmd = "ascii-image-converter ~/Downloads/krishnaphoto.jpg -C -d 20,20 -bb",
+            cmd = "ascii-image-converter ~/Pictures/chad.png -C -d 20,20 -bb",
             pane = 2,
             indent = 4,
             height = 30,

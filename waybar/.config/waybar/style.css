@@ -101,7 +101,7 @@
     /* Base styling for all modules */
     border: none;
     border-radius: 0;
-    font-family: "SFMono Nerd Font";
+    font-family: "Liga SFMono Nerd Font";
     font-size: 16px;
     min-height: 0;
 }
@@ -116,7 +116,7 @@ window#waybar {
 /* Common module styling with border-bottom */
 #mode, #mpd, #custom-weather, #custom-playerctl, #clock, #cpu,
 #memory, #temperature, #battery, #network, #pulseaudio,
-#backlight, #disk, #custom-uptime, #custom-updates, #custom-quote,
+#backlight, #disk, #custom-uptime, #custom-updates-fedora, #custom-quote,
 #idle_inhibitor, #tray {
     padding: 0 10px;
     margin: 0 2px;
@@ -265,7 +265,7 @@ window#waybar {
     border-bottom-color: @uptime-color;
 }
 
-#custom-updates {
+#custom-updates-fedora {
     color: @updates-color;
     border-bottom-color: @updates-color;
 }
