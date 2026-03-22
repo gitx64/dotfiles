@@ -64,9 +64,9 @@
 
     "custom/updates-fedora": {
         "format": "󰚰 {}",
-        "exec": "sudo dnf list --upgrades | wc -l",
+        "exec": "dnf check-upgrade -q | wc -l",
         "interval": 3600,
-        "on-click": "kitty -e sudo dnf update",
+        "on-click": "alacritty -e sudo dnf update",
         "signal": 8
     },
 

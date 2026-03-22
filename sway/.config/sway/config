@@ -192,9 +192,9 @@ exec mako
 
 ## Autostart Applications
 
-exec swaymsg "workspace 1; exec kitty"
-exec swaymsg "workspace 2; exec firefox"
-exec swaymsg "workspace 3; exec steam"
+exec swaymsg "workspace 1; exec firefox"
+exec swaymsg "workspace 2; exec kitty"
+exec swaymsg "workspace 2; exec flatpak run md.obsidian.Obsidian"
 
 
 ### Window Rules
@@ -211,16 +211,16 @@ for_window [app_id="org.pulseaudio.pavucontrol"] floating enable, move position 
     bindsym $mod+Return exec $term
 
     # Start Emacs
-    bindsym $mod+e exec emacsclient -c
+#bindsym $mod+e exec emacsclient -c
 
     # Sticky Mode
-    bindsym $mod+a exec sticky enable
+#bindsym $mod+a exec sticky enable
 
     # Clipboard
     bindsym $mod+v exec cliphist list | rofi -dmenu -p "Clipboard" -theme ~/.config/rofi/clipboard.rasi | cliphist decode | wl-copy
 
     # Emoji Picker
-    bindsym $mod+s exec rofi -show emoji -modi emoji -matching regex -sorting-method levenshtein
+#bindsym $mod+s exec rofi -show emoji -modi emoji -matching regex -sorting-method levenshtein
 
 
     # Lock

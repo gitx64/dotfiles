@@ -59,19 +59,17 @@ local plugins = {
      bigfile = { enabled = true },
      dashboard = { 
        enabled = true ,
-       sections = {
-          { section = "header" },
-          { section = "keys", gap = 1, padding = 1 },
-          { section = "startup" },
-          {
-            section = "terminal",
-            cmd = "ascii-image-converter ~/Pictures/chad.png -C -d 20,20 -bb",
-            pane = 2,
-            indent = 4,
-            height = 30,
-          },
-        },
-      },
+       header = [[
+███████╗███████╗███╗   ██╗████████╗██╗  ██╗███████╗ ██████╗ ███╗   ██╗
+╚══███╔╝██╔════╝████╗  ██║╚══██╔══╝██║  ██║██╔════╝██╔═══██╗████╗  ██║
+  ███╔╝ █████╗  ██╔██╗ ██║   ██║   ███████║█████╗  ██║   ██║██╔██╗ ██║
+ ███╔╝  ██╔══╝  ██║╚██╗██║   ██║   ██╔══██║██╔══╝  ██║   ██║██║╚██╗██║
+███████╗███████╗██║ ╚████║   ██║   ██║  ██║███████╗╚██████╔╝██║ ╚████║
+╚══════╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝
+]],
+
+      }
+    },
      explorer = { enabled = true },
      indent = { enabled = true },
      input = { enabled = true },
@@ -83,7 +81,6 @@ local plugins = {
      statuscolumn = { enabled = true },
      words = { enabled = true },
    },
-  },
 
   {
     'nvim-lualine/lualine.nvim',
@@ -201,7 +198,7 @@ callout = {
 })
 require('lualine').setup {
  options = {
-    theme = bubbles_theme,
+    theme = auto,
     component_separators = '',
     section_separators = { left = '', right = '' },
   },
@@ -231,7 +228,7 @@ require('lualine').setup {
 
 -- Colorscheme
 require("tokyonight").setup()
-vim.cmd.colorscheme "tokyonight"
+vim.cmd.colorscheme "tokyonight-night"
 
 -- TreeSitter Extra setups
 vim.api.nvim_create_autocmd('FileType', {

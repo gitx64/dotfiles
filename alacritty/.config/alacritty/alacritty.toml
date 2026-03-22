@@ -2,81 +2,99 @@
 TERM = "xterm-256color"
 WINIT_X11_SCALE_FACTOR = "1"
 
+# ---------------- WINDOW ----------------
 [window]
 dynamic_padding = true
 decorations = "full"
-title = "Alacritty@CachyOS"
-opacity = 0.8
+title = "Alacritty@Fedora"
+opacity = 0.90                 # 0.8 is too transparent for long coding
 decorations_theme_variant = "Dark"
+startup_mode = "Windowed"
+resize_increments = true
 
 [window.dimensions]
-columns = 100
-lines = 30
+columns = 110
+lines = 32
 
 [window.class]
 instance = "Alacritty"
 general = "Alacritty"
 
+# ---------------- SCROLL ----------------
 [scrolling]
-history = 10000
-multiplier = 3
+history = 15000
+multiplier = 5
 
+# ---------------- COLORS (Tokyonight untouched) ----------------
 [colors]
 draw_bold_text_with_bright_colors = true
 
 [colors.primary]
-background = "0x2E3440"
-foreground = "0xD8DEE9"
+background = "#1a1b26"
+foreground = "#dadef2"
 
 [colors.normal]
-black = "0x3B4252"
-red = "0xBF616A"
-green = "0xA3BE8C"
-yellow = "0xEBCB8B"
-blue = "0x81A1C1"
-magenta = "0xB48EAD"
-cyan = "0x88C0D0"
-white = "0xE5E9F0"
+black = "#32344a"
+red = "#f7768e"
+green = "#9ece6a"
+yellow = "#e0af68"
+blue = "#7aa2f7"
+magenta = "#ad8ee6"
+cyan = "#449dab"
+white = "#c1c5e3"
 
 [colors.bright]
-black = "0x4C566A"
-red = "0xBF616A"
-green = "0xA3BE8C"
-yellow = "0xEBCB8B"
-blue = "0x81A1C1"
-magenta = "0xB48EAD"
-cyan = "0x8FBCBB"
-white = "0xECEFF4"
+black = "#444b6a"
+red = "#ff7a93"
+green = "#b9f27c"
+yellow = "#ff9e64"
+blue = "#7da6ff"
+magenta = "#bb9af7"
+cyan = "#0db9d7"
+white = "#f0f1fc"
 
+# ---------------- FONT ----------------
 [font]
-size = 16
+size = 15.5                     # better density for 1080p/14-15" screens
+builtin_box_drawing = true
 
 [font.normal]
-family = "monospace"
+family = "Liga SFMono Nerd Font"
 style = "Regular"
 
 [font.bold]
-family = "monospace"
+family = "Liga SFMono Nerd Font"
 style = "Bold"
 
 [font.italic]
-family = "monospace"
+family = "Liga SFMono Nerd Font"
 style = "Italic"
 
 [font.bold_italic]
-family = "monospace"
+family = "Liga SFMono Nerd Font"
 style = "Bold Italic"
 
+[font.offset]
+x = 0 
+y = 1
+
+[font.glyph_offset]
+x = 0 
+y = 0 
+
+# ---------------- CURSOR ----------------
+[cursor]
+style = { shape = "Underline", blinking = "On" }
+blink_interval = 600
+unfocused_hollow = true
+thickness = 0.18
+
+# ---------------- SELECTION ----------------
 [selection]
-semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 save_to_clipboard = true
 
-[cursor]
-style = "Underline"
-vi_mode_style = "None"
-unfocused_hollow = true
-thickness = 0.15
-
+# ---------------- MOUSE ----------------
 [mouse]
 hide_when_typing = true
 
@@ -84,7 +102,9 @@ hide_when_typing = true
 mouse = "Middle"
 action = "PasteSelection"
 
+# ---------------- KEYBOARD ----------------
 [keyboard]
+
 [[keyboard.bindings]]
 key = "Paste"
 action = "Paste"
@@ -93,17 +113,14 @@ action = "Paste"
 key = "Copy"
 action = "Copy"
 
-[[keyboard.bindings]]
-key = "L"
-mods = "Control"
-action = "ClearLogNotice"
-
+# Clear screen properly
 [[keyboard.bindings]]
 key = "L"
 mods = "Control"
 mode = "~Vi"
-chars = "\f"
+chars = "\u000c"
 
+# Scroll shortcuts
 [[keyboard.bindings]]
 key = "PageUp"
 mods = "Shift"
@@ -128,6 +145,7 @@ mods = "Shift"
 mode = "~Alt"
 action = "ScrollToBottom"
 
+# Clipboard
 [[keyboard.bindings]]
 key = "V"
 mods = "Control|Shift"
@@ -138,6 +156,7 @@ key = "C"
 mods = "Control|Shift"
 action = "Copy"
 
+# Search
 [[keyboard.bindings]]
 key = "F"
 mods = "Control|Shift"
@@ -154,11 +173,13 @@ mods = "Control|Shift"
 mode = "Vi"
 action = "ClearSelection"
 
+# Font reset
 [[keyboard.bindings]]
 key = "Key0"
 mods = "Control"
 action = "ResetFontSize"
 
+# ---------------- GENERAL ----------------
 [general]
 live_config_reload = true
 working_directory = "None"
