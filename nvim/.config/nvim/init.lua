@@ -9,6 +9,9 @@ vim.cmd("set number")
 vim.cmd("set relativenumber")
 vim.opt.swapfile = false
 vim.opt.showmode = false
+vim.opt.cmdheight = 0
+vim.opt.laststatus = 3
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -59,15 +62,6 @@ local plugins = {
      bigfile = { enabled = true },
      dashboard = { 
        enabled = true ,
-       header = [[
-███████╗███████╗███╗   ██╗████████╗██╗  ██╗███████╗ ██████╗ ███╗   ██╗
-╚══███╔╝██╔════╝████╗  ██║╚══██╔══╝██║  ██║██╔════╝██╔═══██╗████╗  ██║
-  ███╔╝ █████╗  ██╔██╗ ██║   ██║   ███████║█████╗  ██║   ██║██╔██╗ ██║
- ███╔╝  ██╔══╝  ██║╚██╗██║   ██║   ██╔══██║██╔══╝  ██║   ██║██║╚██╗██║
-███████╗███████╗██║ ╚████║   ██║   ██║  ██║███████╗╚██████╔╝██║ ╚████║
-╚══════╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝
-]],
-
       }
     },
      explorer = { enabled = true },
@@ -198,6 +192,7 @@ callout = {
 })
 require('lualine').setup {
  options = {
+    globalstatus = true,
     theme = auto,
     component_separators = '',
     section_separators = { left = '', right = '' },
@@ -237,6 +232,13 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+  callback = function()
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+  end,
+})
 -- keymaps 
 vim.keymap.set('n', '<leader>ff', "<cmd>FzfLua files cwd=~/<CR>", { desc = "Fzf Global Search" })
 vim.keymap.set('n', '<leader>fc', "<cmd>FzfLua files<CR>", { desc = "Fzf current dir search" })

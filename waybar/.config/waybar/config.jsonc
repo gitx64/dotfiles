@@ -6,7 +6,7 @@
     "margin": 0,
     "modules-left": ["sway/workspaces", "sway/mode", "custom/quote"],
         "modules-center": [],                                                                           //battery   //disk     // uptime      //updates        // systray
-    "modules-right": ["clock","pulseaudio", "backlight", "network", "cpu", "memory", "temperature", "battery", "disk", "custom/uptime", "custom/updates-fedora", "tray"],
+    "modules-right": ["custom/note", "clock","pulseaudio", "backlight", "network", "cpu", "memory", "temperature", "battery", "disk", "custom/uptime", "custom/updates-fedora", "tray"],
 
 
     "sway/workspaces": {
@@ -192,5 +192,11 @@
     "tray": {
         "icon-size": 18,
         "spacing": 5
+    },
+
+    "custom/note": {
+        "format": " {}",
+        "exec" : "find ~/Documents/Zettelkasten -type f -name \"*.md\" | wc -l",
+        "interval" : 1
     }
 }
