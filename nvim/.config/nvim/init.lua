@@ -75,6 +75,16 @@ local plugins = {
      statuscolumn = { enabled = true },
      words = { enabled = true },
    },
+   {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-tree/nvim-web-devicons", -- optional, but recommended
+    },
+    lazy = false, -- neo-tree will lazily load itself
+  },
 
   {
     'nvim-lualine/lualine.nvim',
@@ -117,6 +127,17 @@ local plugins = {
     { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
     { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
   },
+},
+{
+  'stevearc/oil.nvim',
+  ---@module 'oil'
+  ---@type oil.SetupOpts
+  opts = {},
+  -- Optional dependencies
+  dependencies = { { "nvim-mini/mini.icons", opts = {} } },
+  -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+  -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+  lazy = false,
 }
 }
 
@@ -220,6 +241,26 @@ require('lualine').setup {
   tabline = {},
   extensions = {},
 }
+require("oil").setup({
+default_file_explorer = true,
+
+columns = {
+"icon",
+"permissions",
+"size"
+},
+
+lsp_file_methods = {
+    -- Enable or disable LSP file operations
+    enabled = true,
+    -- Time to wait for LSP file operations to complete before skipping
+    timeout_ms = 1000,
+    -- Set to true to autosave buffers that are updated with LSP willRenameFiles
+    -- Set to "unmodified" to only save unmodified buffers
+    autosave_changes = false,
+  },
+
+})
 
 -- Colorscheme
 require("tokyonight").setup()
@@ -241,5 +282,5 @@ vim.api.nvim_create_autocmd('TermOpen', {
 })
 -- keymaps 
 vim.keymap.set('n', '<leader>ff', "<cmd>FzfLua files cwd=~/<CR>", { desc = "Fzf Global Search" })
-vim.keymap.set('n', '<leader>fc', "<cmd>FzfLua files<CR>", { desc = "Fzf current dir search" })
+vim.keymap.set("n",'<leader>e' ,"<CMD>Oil<CR>", { desc = "Open parent directory" })
 

@@ -197,6 +197,6 @@
     "custom/note": {
         "format": " {}",
         "exec" : "find ~/Documents/Zettelkasten -type f -name \"*.md\" | wc -l",
-        "interval" : 1
+        "interval" : 3600
     }
 }
