@@ -1,0 +1,16 @@
+diff --git a/autoload/tpipeline/parse.vim b/autoload/tpipeline/parse.vim
+index 357d8f1..eac58b2 100644
+--- a/autoload/tpipeline/parse.vim
++++ b/autoload/tpipeline/parse.vim
+@@ -36,9 +36,9 @@ def Parse(opt: string): string
+                elseif first ==# 'v'
+                        return string(virtcol('.'))
+                elseif first ==# 'p'
+-                       return tpipeline#util#percentage()
++                       return string(tpipeline#util#percentage())
+                elseif first ==# 'P'
+-                       return tpipeline#util#percentage() .. '%'
++                       return string(tpipeline#util#percentage()) .. '%'
+                elseif first ==# '='
+                        return '%='
+                elseif first ==# '%'
