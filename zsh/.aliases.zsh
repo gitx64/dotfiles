@@ -1,0 +1,1 @@
+i3-v2/zsh/.aliases.zsh

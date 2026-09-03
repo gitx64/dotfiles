@@ -1,0 +1,32 @@
+1. vim-tpipeline plugin update problem:
+
+  Problem
+
+  The  vim-tpipeline  plugin's  autoload/tpipeline/parse.vim  uses  vim9script  with compiled  def  functions that have strict type
+  checking. In Vim 9.1, the compiler's type inference became stricter — functions like  string(line('$'))  weren't being recognized
+  as returning a proper  string  type at compile time, causing  E1012: Type mismatch; expected string but got number .
+
+  Fix Applied
+
+  File:  /home/rk/.vim/plugged/vim-tpipeline/autoload/tpipeline/parse.vim
+
+  Replaced all  string(number)  calls and bare numeric returns in the  Parse  function with  printf('%d', ...) , which explicitly
+  and unambiguously returns a  string :
+
+  ┌──────┬───────────────────────────────────────────┬─────────────────────────────────────────────────────────┐
+  │ Line │ Before                                    │ After                                                   │
+  ├──────┼───────────────────────────────────────────┼─────────────────────────────────────────────────────────┤
+  │ 31   │ return string(line('.'))                  │ return printf('%d', line('.'))                          │
+  │ 33   │ return string(line('$'))                  │ return printf('%d', line('$'))                          │
+  │ 35   │ return string(col('.'))                   │ return printf('%d', col('.'))                           │
+  │ 37   │ return string(virtcol('.'))               │ return printf('%d', virtcol('.'))                       │
+  │ 39   │ return tpipeline#util#percentage()        │ return printf('%d', tpipeline#util#percentage())        │
+  │ 41   │ return tpipeline#util#percentage() .. '%' │ return printf('%d', tpipeline#util#percentage()) .. '%' │
+  └──────┴───────────────────────────────────────────┴─────────────────────────────────────────────────────────┘
+
+  The cascading errors ( E121: Undefined variable: line , etc.) were all symptoms — they occurred because the first error in  Parse
+   prevented  line  from ever being assigned in  tpipeline#update() .
+
+  Note: This is a local fix in your plugged directory. If you update the plugin via  :PlugUpdate , this patch will be overwritten.
+  You may want to file an issue on vimpostor/vim-tpipeline so the author can make this Vim 9.1 compatible upstream.
+

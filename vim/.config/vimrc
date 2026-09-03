@@ -1,0 +1,52 @@
+set relativenumber
+set nocompatible
+set hidden
+set encoding=utf-8
+set showtabline=0
+
+call plug#begin()
+
+" List your plugins here
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-vinegar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-ctrlspace/vim-ctrlspace'
+Plug 'prabirshrestha/vim-lsp'                " LSP client — talks to language servers
+Plug 'mattn/vim-lsp-settings'                " auto-detect and install LSP servers
+Plug 'prabirshrestha/asyncomplete.vim'       " async autocomplete popup framework
+Plug 'prabirshrestha/asyncomplete-lsp.vim'   " bridge: feeds LSP completions into popup
+Plug 'jiangmiao/auto-pairs'                  " auto-close brackets and quotes
+Plug 'vimpostor/vim-tpipeline'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'gitx64/nerdtree-project-plugin'
+Plug 'PhilRunninger/nerdtree-buffer-ops'
+Plug 'PhilRunninger/nerdtree-visual-selection'
+call plug#end()
+
+
+" Configurations
+nnoremap <space> <Nop>
+vnoremap <space> <Nop>
+onoremap <space> <Nop>
+
+let mapleader = " "   
+
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+
+" ========== Nerdtree ==========
+
+nnoremap <leader>e :NERDTreeToggle<CR>
+
+" Start NERDTree, unless a file or session is specified, eg. vim -S session_file.vim.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | NERDTree | endif
+let g:NERDTreeModifiable = 1
+" ==============================
